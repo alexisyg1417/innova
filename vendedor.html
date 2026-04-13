@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Vendedor | INNOVA</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --primary-navy: #1a2a3a;
+            --accent-gold: #c5a059;
+        }
+
+        /* Estilo para la foto de perfil "Mamona" */
+        .vend-avatar-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .vend-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .badge-gold {
+            background-color: var(--accent-gold);
+            color: white;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .card-seller {
+            border: none;
+            border-top: 5px solid var(--accent-gold);
+            background: white;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f2f5;
+            border-radius: 12px;
+            color: var(--primary-navy);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .propiedad-card-mini {
+            transition: transform 0.3s ease;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .propiedad-card-mini:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-white shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-building me-2 text-primary-custom fs-3"></i>
+                <span class="brand-text fs-4 text-dark mb-0 fw-bold">INNOVA</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list fs-1 text-dark"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center gap-3">
+                    <li class="nav-item"><a class="nav-link fw-bold text-dark" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-dark" href="index.html#catalogo">Catálogo</a></li>
+                    
+                    <li class="nav-item" id="user-menu">
+                        <div class="dropdown">
+                            <button class="btn btn-dark-custom dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle me-1"></i> <span id="username-display">Mi Cuenta</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                <li><a class="dropdown-item" href="perfil.html">Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="cliente.html">Mi Panel</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><button class="dropdown-item text-danger" onclick="handleLogout()">Cerrar Sesión</button></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow-1 container" style="margin-top: 120px; margin-bottom: 50px;">
+        <div class="row g-5">
+            
+            <div class="col-lg-4">
+                <div class="card card-seller shadow-sm rounded-4 p-4 text-center sticky-top" style="top: 110px;">
+                    <div class="vend-avatar-container mb-3">
+                        <img id="vend-avatar" src="https://via.placeholder.com/150" class="vend-avatar rounded-circle" alt="Foto de perfil">
+                    </div>
+                    
+                    <h3 id="vend-nombre" class="font-serif fw-bold mb-1">Cargando...</h3>
+                    <span class="badge badge-gold px-3 py-2 rounded-pill mb-4">Persona Verificada Por Innova</span>
+                    
+                    <div class="text-start border-top pt-4">
+                        <p class="small mb-3 text-muted fw-bold text-uppercase" style="letter-spacing: 1px;">Contacto Directo</p>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="contact-icon"><i class="bi bi-envelope-at"></i></div>
+                            <div class="text-truncate">
+                                <small class="text-muted d-block text-uppercase" style="font-size: 0.6rem;">Correo</small>
+                                <span id="vend-email" class="fw-bold small">...</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="contact-icon"><i class="bi bi-phone"></i></div>
+                            <div>
+                                <small class="text-muted d-block text-uppercase" style="font-size: 0.6rem;">WhatsApp</small>
+                                <span id="vend-tel" class="fw-bold small">...</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-light p-3 rounded-3 mb-4">
+                            <p class="small mb-1 text-muted fw-bold text-uppercase" style="font-size: 0.6rem;">Acerca de mí</p>
+                            <p id="vend-bio" class="text-muted small fst-italic mb-0" style="line-height: 1.5;">
+                                "Cargando biografía profesional..."
+                            </p>
+                        </div>
+
+                        <a id="btn-whatsapp" href="#" target="_blank" class="btn btn-success w-100 py-3 fw-bold shadow-sm rounded-3">
+                            <i class="bi bi-whatsapp me-2"></i>Contactar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-3">
+                    <div>
+                        <h2 class="font-serif fw-bold mb-1">Catálogo de Propiedades</h2>
+                        <p class="text-muted mb-0">Explora las opciones exclusivas de este agente.</p>
+                    </div>
+                    
+                </div>
+
+                <div id="vend-propiedades-container" class="row g-4">
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-primary-custom" role="status"></div>
+                        <p class="mt-2 text-muted">Sincronizando inventario...</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-5 bg-white border-top w-100 mt-auto">
+        <div class="container text-center text-md-start">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <span class="font-serif fw-bold fs-4 text-primary-navy" style="letter-spacing: 2px;">INNOVA</span>
+                    <p class="text-muted small mb-0 mt-1">© 2026 INNOVA Real Estate Services UTP. Proyecto Universitario.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-4 fs-4">
+                        <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+    <script>
+        // Lógica de arranque para vendedor.html
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const vendId = params.get('id');
+            
+            if (vendId) {
+                // Esta función debe estar en tu app.js
+                loadPublicProfile(vendId);
+            } else {
+                alert("No se especificó un vendedor.");
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

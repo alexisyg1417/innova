@@ -1,0 +1,271 @@
+:root {
+    --primary-color: #1a2a3a; /* Azul Navy */
+    --accent-color: #c5a059;  /* Dorado Mate */
+    --text-dark: #2c3e50;
+    --bg-light: #f4f6f8;
+    
+    /* Colores de Categorías */
+    --badge-venta: #1a2a3a;
+    --badge-renta: #5a6b7c;
+    --badge-hab: #8f9ba6;
+}
+
+body { 
+    font-family: 'Lato', sans-serif; 
+    background-color: var(--bg-light); 
+    color: var(--text-dark); 
+}
+
+h1, h2, h3, h4, .brand-text, .font-serif { 
+    font-family: 'Playfair Display', serif; 
+}
+
+.brand-text { 
+    font-weight: 700; 
+    letter-spacing: 2px; 
+    color: var(--primary-color); 
+}
+
+/* --- Utilidades de Texto --- */
+.text-primary-custom { color: var(--primary-color) !important; }
+.text-accent-custom { color: var(--accent-color) !important; }
+
+/* --- Botones --- */
+.btn-dark-custom { 
+    background: var(--primary-color); 
+    color: white; 
+    border-radius: 4px; 
+    padding: 12px 25px; 
+    border: 1px solid var(--primary-color); 
+    transition: all 0.3s ease; 
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.btn-dark-custom:hover { 
+    background: white; 
+    color: var(--primary-color); 
+    box-shadow: 0 4px 10px rgba(26, 42, 58, 0.15);
+}
+
+.btn-primary-custom { 
+    background: var(--accent-color); 
+    color: white; 
+    border-radius: 4px; 
+    border: none; 
+    padding: 12px 25px; 
+    transition: all 0.3s ease; 
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.btn-primary-custom:hover { 
+    background: #b08d4a; 
+    color: white; 
+    box-shadow: 0 4px 10px rgba(197, 160, 89, 0.2);
+}
+
+/* --- Autenticación (Login / Register) --- */
+.auth-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Un gradiente suave de fondo para que la tarjeta resalte */
+    background: linear-gradient(135deg, #f4f6f8 0%, #e0e5ec 100%);
+}
+
+.auth-card {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(26, 42, 58, 0.08);
+    border-top: 6px solid var(--accent-color); /* Toque dorado arriba */
+    transition: transform 0.3s ease;
+}
+
+.auth-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilos para los inputs dentro del login/registro */
+.auth-card .form-control {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+    background-color: #fcfcfc;
+}
+
+.auth-card .form-control:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(197, 160, 89, 0.2);
+    background-color: white;
+}
+
+.auth-card label {
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+/* --- Hero y Tarjetas (Index) --- */
+.hero-section {
+    background: linear-gradient(rgba(26, 42, 58, 0.7), rgba(26, 42, 58, 0.6)), url('https://images.unsplash.com/photo-1600596542815-2495db98dada?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover; 
+    background-position: center;
+    height: 75vh;
+}
+
+.property-card { 
+    border: none; 
+    transition: all 0.3s ease; 
+    overflow: hidden; 
+    border-radius: 8px; 
+}
+.property-card:hover { 
+    transform: translateY(-8px); 
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1); 
+}
+.card-price { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 1.4rem; 
+    color: var(--primary-color); 
+    font-weight: 700; 
+}
+.separator { 
+    width: 50px; 
+    height: 3px; 
+    background: var(--accent-color); 
+    margin: 15px 0; 
+    border-radius: 2px;
+}
+
+/* --- Etiquetas de Categoría --- */
+.badge-venta { background-color: var(--badge-venta); color: white; padding: 6px 12px; font-weight: normal; letter-spacing: 1px;}
+.badge-renta { background-color: var(--badge-renta); color: white; padding: 6px 12px; font-weight: normal; letter-spacing: 1px;}
+.badge-hab { background-color: var(--badge-hab); color: white; padding: 6px 12px; font-weight: normal; letter-spacing: 1px;}
+
+/* --- Paneles de Control (Admin y Cliente) --- */
+.dashboard-nav { background-color: var(--primary-color); color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+.dashboard-nav .navbar-brand { color: white; font-weight: bold; letter-spacing: 2px;}
+.dashboard-card { 
+    background: white; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+    padding: 25px; 
+    border-top: 4px solid var(--accent-color); 
+}
+.table-custom th { 
+    font-family: 'Lato', sans-serif; 
+    font-weight: 700; 
+    color: #6c757d; 
+    text-transform: uppercase; 
+    font-size: 0.85rem; 
+    letter-spacing: 1px; 
+}
+.table-custom td { vertical-align: middle; }
+
+/* --- Tarjetas de Citas --- */
+.appointment-card { 
+    border-left: 5px solid var(--accent-color); 
+    background: white; 
+    padding: 20px; 
+    margin-bottom: 15px; 
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05); 
+    transition: all 0.2s ease;
+}
+.appointment-card:hover {
+    border-left-width: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+}
+.appointment-time { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 1.3rem; 
+    font-weight: 600; 
+    color: var(--primary-color); 
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.thumb-item {
+    transition: all 0.3s ease;
+}
+
+.thumb-item:hover {
+    opacity: 1 !important;
+}
+
+#thumbnails-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+#thumbnails-container::-webkit-scrollbar-thumb {
+    background: #c5a059; /* El color dorado de Innova */
+    border-radius: 10px;
+}
+
+/* Transición suave para el Nav de Innova */
+.navbar {
+    transition: all 0.4s ease-in-out;
+}
+
+/* Asegura que el logo y links siempre sean legibles */
+.navbar-light .nav-link, 
+.navbar-light .brand-text {
+    color: #1a2a3a !important; /* Tu color Navy oscuro */
+}
+
+/* Efecto de interacción para las fotos en el modal de edición */
+#preview-imagenes-actuales .position-relative {
+    transition: transform 0.3s ease;
+}
+
+#preview-imagenes-actuales .position-relative:hover {
+    transform: scale(1.05); /* Se agranda un poquito */
+    z-index: 10;
+}
+
+#preview-imagenes-actuales img {
+    transition: filter 0.3s ease;
+}
+
+#preview-imagenes-actuales .position-relative:hover img {
+    filter: brightness(0.7) blur(1px); /* Se oscurece y desenfoca un poco para resaltar el botón de borrar */
+}
+
+/* El botón de borrar aparece más fuerte al hacer hover */
+#preview-imagenes-actuales .btn-danger {
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+#preview-imagenes-actuales .position-relative:hover .btn-danger {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Estilo para el avatar con iniciales */
+.avatar-placeholder {
+    width: 150px;
+    height: 150px;
+    background-color: #1a2a3a; /* El azul oscuro de Innova */
+    color: #c5a059; /* El dorado de Innova */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    font-weight: bold;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    border: 4px solid #c5a059;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+}
+
+/* Ocultar la imagen si no carga */
+#profile-avatar.d-none {
+    display: none !important;
+}

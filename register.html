@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta | INNOVA</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ESTO MANTIENE LA ESTÉTICA PROFESIONAL */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+            background-color: #e9ecef;
+            margin: 0;
+        }
+
+        .register-wrapper {
+            flex: 1; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0; /* Un poco más de espacio por ser más larga la card */
+        }
+
+        .auth-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px #c5a059;
+            width: 100%;
+            max-width: 450px;
+            padding: 2.5rem;
+            border-top: 5px solid #c5a059; /* El toque dorado de Innova */
+        }
+    </style>
+</head>
+<body>
+
+    <main class="register-wrapper">
+        <div class="auth-card">
+            <div class="text-center mb-4">
+                <h1 class="font-serif fw-bold mb-0" style="letter-spacing: 3px; color: #1a2a3a;">INNOVA</h1>
+                <p class="text-muted font-serif fst-italic small">La dirección de tus sueños</p>
+            </div>
+            
+            <form onsubmit="event.preventDefault(); handleRegisterPage();">
+                <div class="mb-3">
+                    <label class="form-label small text-uppercase fw-bold text-muted">Nombre Completo</label>
+                    <input type="text" id="reg-name" class="form-control shadow-sm" placeholder="Tu nombre" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small text-uppercase fw-bold text-muted">Correo Electrónico</label>
+                    <input type="email" id="reg-email" class="form-control shadow-sm" placeholder="nombre@ejemplo.com" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small text-uppercase fw-bold text-muted">Teléfono / WhatsApp</label>
+                    <input type="tel" id="reg-phone" class="form-control shadow-sm" placeholder="Ej. 2221234567" pattern="[0-9]{10}" title="Ingresa un número a 10 dígitos" required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label small text-uppercase fw-bold text-muted">Contraseña</label>
+                    <input type="password" id="reg-pass" class="form-control shadow-sm" placeholder="Ingresa una contraseña" required>
+                </div>
+                
+                <div id="reg-message" class="alert d-none small text-center mb-4" role="alert"></div>
+                <div class="g-recaptcha mb-3 d-flex justify-content-center" data-sitekey="6Lf8sLQsAAAAAJtNXngwyD_9lx5iRduuw-rs77Ic"></div>
+                <button type="submit" id="btn-register" class="btn btn-dark w-100 py-3 fw-bold shadow-sm mb-3">Registrar</button>
+            </form>
+            
+            <div class="text-center border-top pt-4">
+                <p class="text-muted small mb-1">¿Ya tienes cuenta?</p>
+                <a href="login.html" class="fw-bold text-decoration-none" style="color: #1a2a3a;">Iniciar Sesión</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-4 bg-white border-top w-100">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="font-serif fw-bold fs-5" style="color: #1a2a3a; letter-spacing: 2px;">INNOVA</span>
+                    <p class="text-muted small mb-0 mt-1">© 2026 INNOVA Real Estate Services UTP. Proyecto Universitario.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 fs-5">
+                        <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

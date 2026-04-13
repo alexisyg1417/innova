@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reportes y Analítica | Admin INNOVA</title>
+    <link rel="icon" type="logo.png" href="logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg dashboard-nav fixed-top shadow-sm">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="admin.html">
+                <i class="bi bi-building me-2 text-white"></i>
+                <span class="font-serif fw-bold text-white" style="letter-spacing: 2px;">ADMIN</span>
+            </a>
+            <div class="d-flex gap-3">
+                <a href="index.html" class="btn btn-link text-white text-decoration-none">Inicio</a>
+                <a href="admin.html" class="btn btn-link text-white text-decoration-none">Dashboard</a>
+                <a href="admin-inventario.html" class="btn btn-link text-white text-decoration-none">Inventario</a>
+                <a href="admin-usuarios.html" class="btn btn-link text-white text-decoration-none">Usuarios</a>
+                <a href="admin-reportes.html" class="btn btn-light btn-sm fw-bold">Reportes</a>
+
+                <div class="vr text-white opacity-25 mx-2"></div>
+            <button onclick="handleLogout()" class="btn btn-danger btn-sm px-2 py-1" title="Cerrar Sesión">
+                <i class="bi bi-box-arrow-right"></i>
+            </button>
+        </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-4" style="margin-top: 100px;">
+        <div class="row mb-4">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="font-serif">Analítica de la Plataforma</h2>
+                    <p class="text-muted">Métricas reales obtenidas directamente de la base de datos.</p>
+                </div>
+                <div class="mb-4 text-center">
+    <button id="btn-reporte-general" class="btn btn-outline-dark me-2" onclick="descargarReporteGeneral()">
+        <i class="bi bi-file-earmark-pdf-fill me-2"></i> Descargar Reporte General Completo
+    </button>
+</div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="dashboard-card text-center h-100 py-4">
+                    <i class="bi bi-house-door fs-1 text-primary-custom mb-2"></i>
+                    <h3 class="font-serif mb-0" id="stat-activas">--</h3>
+                    <p class="text-muted small text-uppercase fw-bold mt-2 mb-0">Propiedades Activas</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card text-center h-100 py-4">
+                    <i class="bi bi-people fs-1 text-primary-custom mb-2"></i>
+                    <h3 class="font-serif mb-0" id="stat-usuarios">--</h3>
+                    <p class="text-muted small text-uppercase fw-bold mt-2 mb-0">Usuarios Registrados</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card text-center h-100 py-4" style="border-top: 4px solid #28a745;">
+                    <i class="bi bi-calendar-check fs-1 text-success mb-2"></i>
+                    <h3 class="font-serif mb-0" id="stat-citas">--</h3>
+                    <p class="text-muted small text-uppercase fw-bold mt-2 mb-0">Citas Confirmadas</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card text-center h-100 py-4" style="border-top: 4px solid #dc3545;">
+                    <i class="bi bi-exclamation-triangle fs-1 text-danger mb-2"></i>
+                    <h3 class="font-serif mb-0" id="stat-rechazadas">--</h3>
+                    <p class="text-muted small text-uppercase fw-bold mt-2 mb-0">Solicitudes Rechazadas</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-lg-8">
+                <div class="dashboard-card h-100">
+                    <h5 class="font-serif border-bottom pb-3 mb-4">Interacción Global</h5>
+                    <canvas id="barChart" height="120"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="dashboard-card h-100">
+                    <h5 class="font-serif border-bottom pb-3 mb-4">Estado del Inventario</h5>
+                    <div style="max-height: 250px; display: flex; justify-content: center;">
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-4 bg-white border-top w-100">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="font-serif fw-bold fs-5" style="color: #1a2a3a; letter-spacing: 2px;">INNOVA</span>
+                    <p class="text-muted small mb-0 mt-1">© 2026 INNOVA Real Estate Services UTP. Proyecto Universitario.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 fs-5">
+                        <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

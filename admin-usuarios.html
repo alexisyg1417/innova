@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Seguridad y Usuarios | Admin INNOVA</title>
+    <link rel="icon" type="logo.png" href="logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .table-custom th { font-size: 0.75rem; letter-spacing: 1.5px; background-color: #f8f9fa; border-bottom: 2px solid #dee2e6; text-transform: uppercase; }
+        .table-custom td { padding: 1rem 0.5rem; border-bottom: 1px solid #f1f3f5; vertical-align: middle; }
+        .filter-bar { background: white; padding: 15px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); margin-bottom: 20px; }
+        .avatar-circle { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 1.1rem; }
+        .bg-avatar-1 { background-color: var(--primary-color); }
+        .bg-avatar-2 { background-color: var(--accent-color); }
+        .bg-avatar-3 { background-color: #6c757d; }
+        .kpi-mini-card { border-left: 4px solid var(--accent-color); background: white; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg dashboard-nav fixed-top shadow-sm">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="admin.html">
+                <i class="bi bi-shield-lock me-2 text-white"></i>
+                <span class="font-serif fw-bold text-white" style="letter-spacing: 2px;">ADMIN</span>
+            </a>
+            <div class="d-flex gap-3">
+                <a href="index.html" class="btn btn-link text-white text-decoration-none">Inicio</a>
+                <a href="admin.html" class="btn btn-link text-white text-decoration-none">Dashboard</a>
+                <a href="admin-inventario.html" class="btn btn-link text-white text-decoration-none">Inventario</a>
+                <a href="admin-usuarios.html" class="btn btn-light btn-sm fw-bold">Usuarios</a>
+                <a href="admin-reportes.html" class="btn btn-link text-white text-decoration-none">Reportes</a>
+
+                <div class="vr text-white opacity-25 mx-2"></div>
+            <button onclick="handleLogout()" class="btn btn-danger btn-sm px-2 py-1" title="Cerrar Sesión">
+                <i class="bi bi-box-arrow-right"></i>
+            </button>
+        </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-4" style="margin-top: 100px;">
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-6">
+                <h2 class="font-serif mb-1">Control de Identidad y Accesos</h2>
+                <p class="text-muted mb-0">Auditoría de cuentas, roles y actividad en la plataforma.</p>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="kpi-mini-card d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-muted text-uppercase small fw-bold mb-1">Cuentas Registradas</h6>
+                        <h3 class="mb-0 font-serif text-primary-custom" id="kpi-total-usuarios">--</h3>
+                    </div>
+                    <i class="bi bi-people fs-1 text-muted opacity-50"></i>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kpi-mini-card d-flex justify-content-between align-items-center" style="border-left-color: #28a745;">
+                    <div>
+                        <h6 class="text-muted text-uppercase small fw-bold mb-1">Admins</h6>
+                        <h3 class="mb-0 font-serif text-success" id="kpi-total-admins">--</h3>
+                    </div>
+                    <i class="bi bi-shield-check fs-1 text-muted opacity-50"></i>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kpi-mini-card d-flex justify-content-between align-items-center" style="border-left-color: #6c757d;">
+                    <div>
+                        <h6 class="text-muted text-uppercase small fw-bold mb-1">Clientes Activos</h6>
+                        <h3 class="mb-0 font-serif text-secondary" id="kpi-total-clientes">--</h3>
+                    </div>
+                    <i class="bi bi-person-badge fs-1 text-muted opacity-50"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card p-0 overflow-hidden mb-4">
+            <div class="table-responsive">
+                <table class="table table-hover table-custom align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4" style="width: 40px;"><input class="form-check-input" type="checkbox"></th>
+                            <th>Perfil de Usuario</th>
+                            <th>Rol / Permisos</th>
+                            <th>Conexión</th>
+                            <th>Métricas</th>
+                            <th>Estado</th>
+                            <th class="text-end pe-4">Gestión</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-usuarios-container">
+                        <tr>
+                            <td colspan="7" class="text-center py-5">
+                                <div class="spinner-border text-primary-custom" role="status"></div>
+                                <p class="mt-2 text-muted">Sincronizando con Supabase...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+     <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer class="py-4 bg-white border-top w-100">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="font-serif fw-bold fs-5" style="color: #1a2a3a; letter-spacing: 2px;">INNOVA</span>
+                    <p class="text-muted small mb-0 mt-1">© 2026 INNOVA Real Estate Services UTP. Proyecto Universitario.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 fs-5">
+                        <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
